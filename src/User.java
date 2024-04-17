@@ -6,7 +6,7 @@ public class User {
     private String password;
 
     public User(String mail, String password){
-        this.mail = mail;
+        this.mail = MailValidator.mailValidatorMethod(mail);
         this.password = PasswordValidator.passwordValidator(password);
     }
 
