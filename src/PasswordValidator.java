@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 public class PasswordValidator {
     //This class is responsible for the validation of User's password
     public static String passwordValidator(String password){
-        String regex = "^[a-zA-Z]{4,}[0-9]{1,}[!@#$%()_-]{1,}$"; // <- this is a regular expressions;
+        String regex = "^[a-zA-Z]{4,}[0-9]{1,}[*!@#$%()_-]{1,}$"; // <- this is a regular expressions;
         /*A regular Expressions is an grammatical patterns than will be searched in CharLets, extern archives and others.
         * */
 
@@ -15,6 +15,7 @@ public class PasswordValidator {
         try{
             boolean passwordIsSecure = searchPattern.find(); // Matcher uses this method to do the search
             if(!(passwordIsSecure)){
+                System.out.println("The inserted password:"+password);
                 System.out.println("Your password must have, min 4 characters(upper or lower), min 1 number and min 1 special character");
                 throw new PasswordException("your password is weak and don't meets the requirements.");
             }
