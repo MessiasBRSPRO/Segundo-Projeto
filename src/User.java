@@ -23,6 +23,7 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
+        //if two users have same mail, are same users. This don't is allowed
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
@@ -31,6 +32,7 @@ public class User {
 
     @Override
     public int hashCode() {
+        //if two users have same mail, are same users. This don't is allowed
         return Objects.hash(mail);
     }
 
@@ -42,6 +44,10 @@ public class User {
             System.out.println("The mail:"+user.getMail());
             System.out.println("This email/user already exists!");
         }
+    }
+
+    public void forgotMyPassword(){
+        //Nothing here for now...
     }
 
     public static List<User> getUserList() {
