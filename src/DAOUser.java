@@ -24,4 +24,16 @@ public class DAOUser {
             System.out.println("an exception has occurred:"+e.getMessage());
         }
     }
+
+    public void deleteFromDataBase(User user){
+        sqlCommand = "DELETE FROM usuarios WHERE mail=? AND password=?";
+        try{
+            PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
+            operationsSQLExecutor.setString(1, user.getMail());
+            operationsSQLExecutor.setString(2, user.getPassword());
+            operationsSQLExecutor.execute();
+        }catch (SQLException e){
+            System.out.println("an exception has occurred:"+e.getMessage());
+        }
+    }
 }
