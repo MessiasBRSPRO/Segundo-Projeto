@@ -20,7 +20,7 @@ public class User {
     * and each data have a index(starts in index 0) */
 
     public User(String username, String mail, String password){
-        this.username = username.toLowerCase();
+        this.username = username.toLowerCase().trim();
         this.mail = MailValidator.mailValidatorMethod(mail.toLowerCase().trim());
         this.password = PasswordValidator.passwordValidator(password.trim());
     }
