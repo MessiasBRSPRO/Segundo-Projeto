@@ -21,7 +21,7 @@ public class User {
 
     public User(String username, String mail, String password){
         this.username = username;
-        this.mail = MailValidator.mailValidatorMethod(mail);
+        this.mail = MailValidator.mailValidatorMethod(mail).toLowerCase();
         this.password = PasswordValidator.passwordValidator(password);
     }
 
@@ -29,13 +29,13 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(mail, user.mail);
+        User theUser = (User) o;
+        return Objects.equals(mail, theUser.mail) && Objects.equals(password, theUser.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mail);
+        return Objects.hash(mail, username);
     }
 
     public static void registerUserInArrayList(User user){
