@@ -47,7 +47,7 @@ public class DAOUser {
             int totalRows = 0;
             while(rows.next()){
                 totalRows++;
-                System.out.println("User Mail:"+rows.getString(1) + " | password:"+rows.getString(2));
+                System.out.println("Username:"+rows.getString(1) + " | Mail:"+rows.getString(2) + " | password:"+rows.getString(3));
             }
             System.out.println("Total rows:"+totalRows);
         }catch (SQLException e){
@@ -64,7 +64,7 @@ public class DAOUser {
             int results = 0;
             while(rows.next()){
                 results++;
-                System.out.println("User mail:"+rows.getString(1) + " | password:"+rows.getString(2));
+                System.out.println("Username:"+rows.getString(1) + " | Mail:"+rows.getString(2) + " | password:"+rows.getString(3));
             }
             System.out.println("Results:"+results);
         }catch (SQLException e){
