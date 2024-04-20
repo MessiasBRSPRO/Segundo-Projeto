@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 public class PasswordValidator {
     //This class is responsible for the validation of User's password
     public static String passwordValidator(String password){
-        String regex = "^[a-zA-Z]{4,}[0-9]{1,}[*!@#$%()_-]{1,}$"; // <- this is a regular expressions;
+        String regex = "^[a-zA-Z]{4,}[0-9]{1,}[!@#$%¬&*()-+=]{1,}$"; // <- this is a regular expressions;
         /*A regular Expressions is an grammatical patterns than will be searched in CharLets, extern archives and others.
         * */
 
