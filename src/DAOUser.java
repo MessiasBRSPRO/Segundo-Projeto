@@ -14,12 +14,13 @@ public class DAOUser {
         this.connection = connectDataBase.startConnection("postgresql", 5432, "usuarios");
     }
     public void insertIntoDataBase(User user){
-        sqlCommand = "INSERT INTO usuarios (mail, password) VALUES(?, ?)";
+        sqlCommand = "INSERT INTO usuarios (username, mail, password) VALUES(?, ?, ?)";
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
-            operationsSQLExecutor.setString(1, user.getMail());
-            operationsSQLExecutor.setString(2, user.getPassword());
-            System.out.println(user.getMail() + " has registered in dataBase");
+            operationsSQLExecutor.setString(1, user.getUsername());
+            operationsSQLExecutor.setString(2, user.getMail());
+            operationsSQLExecutor.setString(3, user.getPassword());
+            System.out.println(user.getUsername() + " has registered in dataBase");
             operationsSQLExecutor.execute();
         }catch (SQLException e){
             System.out.println("an exception has occurred:"+e.getMessage());
@@ -31,6 +32,7 @@ public class DAOUser {
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
             operationsSQLExecutor.setString(1, user.getMail());
+            System.out.println(user.getUsername() + " has removed from Database");
             operationsSQLExecutor.execute();
         }catch (SQLException e){
             System.out.println("an exception has occurred:"+e.getMessage());
@@ -53,11 +55,11 @@ public class DAOUser {
         }
     }
 
-    public void specifiedRowSearch(String mail){
-        sqlCommand = "SELECT * FROM usuarios WHERE mail=?";
+    public void specifiedRowSearch(String username){
+        sqlCommand = "SELECT * FROM usuarios WHERE username=?";
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
-            operationsSQLExecutor.setString(1, mail);
+            operationsSQLExecutor.setString(1, username);
             ResultSet rows = operationsSQLExecutor.executeQuery();
             int results = 0;
             while(rows.next()){
