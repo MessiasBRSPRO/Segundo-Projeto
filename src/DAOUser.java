@@ -53,16 +53,16 @@ public class DAOUser {
         }
     }
 
-    public void specifiedRowSearch(User user){
+    public void specifiedRowSearch(String mail){
         sqlCommand = "SELECT * FROM usuarios WHERE mail=?";
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
-            operationsSQLExecutor.setString(1, user.getMail());
+            operationsSQLExecutor.setString(1, mail);
             ResultSet rows = operationsSQLExecutor.executeQuery();
             int results = 0;
             while(rows.next()){
                 results++;
-                System.out.println("User mail:"+rows.getString(1) + " | password:"+user.getPassword());
+                System.out.println("User mail:"+rows.getString(1) + " | password:"+rows.getString(2));
             }
             System.out.println("Results:"+results);
         }catch (SQLException e){
