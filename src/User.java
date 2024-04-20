@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
+
+    private String username;
+
     private String mail;
     /*The encapsulation is one of main pillars of OOP, the objective is give access's restriction
     to data into the attributes avoiding changes or access the value of attributes.
@@ -16,14 +19,14 @@ public class User {
     * vector, the size of array is dynamic.The data are saved in array sequentially
     * and each data have a index(starts in index 0) */
 
-    public User(String mail, String password){
+    public User(String username, String mail, String password){
+        this.username = username;
         this.mail = MailValidator.mailValidatorMethod(mail);
         this.password = PasswordValidator.passwordValidator(password);
     }
 
     @Override
     public boolean equals(Object o) {
-        //if two users have same mail, are same users. This don't is allowed
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
@@ -32,17 +35,15 @@ public class User {
 
     @Override
     public int hashCode() {
-        //if two users have same mail, are same users. This don't is allowed
         return Objects.hash(mail);
     }
 
     public static void registerUserInArrayList(User user){
         if(!(userList.contains(user))){
             userList.add(user);
-            System.out.println("User:"+user.getMail() + " hass been registered.");
+            System.out.println("User:"+user.getUsername() + " hass been registered.");
         }else{
-            System.out.println("The mail:"+user.getMail());
-            System.out.println("This email/user already exists!");
+            System.out.println("A user already has registered with this "+ user.getUsername());
         }
     }
 
@@ -52,6 +53,10 @@ public class User {
 
     public static List<User> getUserList() {
         return Collections.unmodifiableList(userList);
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getMail() {
