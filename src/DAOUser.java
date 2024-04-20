@@ -52,4 +52,21 @@ public class DAOUser {
             System.out.println("an exception has occurred:"+e.getMessage());
         }
     }
+
+    public void specifiedRowSearch(User user){
+        sqlCommand = "SELECT * FROM usuarios WHERE mail=?";
+        try{
+            PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
+            operationsSQLExecutor.setString(1, user.getMail());
+            ResultSet rows = operationsSQLExecutor.executeQuery();
+            int results = 0;
+            while(rows.next()){
+                results++;
+                System.out.println("User mail:"+rows.getString(1) + " | password:"+user.getPassword());
+            }
+            System.out.println("Results:"+results);
+        }catch (SQLException e){
+            System.out.println("an exception has occurred:"+e.getMessage());
+        }
+    }
 }
