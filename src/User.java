@@ -20,9 +20,9 @@ public class User {
     * and each data have a index(starts in index 0) */
 
     public User(String username, String mail, String password){
-        this.username = username;
-        this.mail = MailValidator.mailValidatorMethod(mail).toLowerCase();
-        this.password = PasswordValidator.passwordValidator(password);
+        this.username = username.toLowerCase();
+        this.mail = MailValidator.mailValidatorMethod(mail.toLowerCase().trim());
+        this.password = PasswordValidator.passwordValidator(password.trim());
     }
 
     @Override
@@ -30,16 +30,16 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User theUser = (User) o;
-        return Objects.equals(mail, theUser.mail) && Objects.equals(password, theUser.password);
+        return Objects.equals(mail, theUser.mail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mail, username);
+        return Objects.hash(mail);
     }
 
     public static void registerUserInArrayList(User user){
-        if(!(userList.contains(user))){
+        if(!(userList.contains(user)) && user.password !=null && user.mail != null){
             userList.add(user);
             System.out.println("User:"+user.getUsername() + " hass been registered.");
         }else{
