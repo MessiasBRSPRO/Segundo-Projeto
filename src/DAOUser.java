@@ -16,12 +16,17 @@ public class DAOUser {
     public void insertIntoDataBase(User user){
         sqlCommand = "INSERT INTO usuarios (username, mail, password) VALUES(?, ?, ?)";
         try{
-            PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
-            operationsSQLExecutor.setString(1, user.getUsername());
-            operationsSQLExecutor.setString(2, user.getMail());
-            operationsSQLExecutor.setString(3, user.getPassword());
-            System.out.println(user.getUsername() + " has registered in dataBase");
-            operationsSQLExecutor.execute();
+            if(user.getMail() != null && user.getPassword() != null){
+                //Only be added in DB if mail and password is valid.
+                PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
+                operationsSQLExecutor.setString(1, user.getUsername());
+                operationsSQLExecutor.setString(2, user.getMail());
+                operationsSQLExecutor.setString(3, user.getPassword());
+                System.out.println(user.getUsername() + " has registered in dataBase");
+                operationsSQLExecutor.execute();
+            }else{
+                System.out.println("Please have an error in your information in register, please check!");
+            }
         }catch (SQLException e){
             System.out.println("an exception has occurred:"+e.getMessage());
         }
