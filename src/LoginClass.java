@@ -5,10 +5,12 @@ public class LoginClass {
     /*This class is responsible to give access to existent users to application*/
     private static DAOUser daoUser = new DAOUser();
     private boolean logged = false;
+    private int tentativesLogin; //<- nothing used for now
     public void loginMethod(){
         Scanner input = new Scanner(System.in);
         while(!(logged)){
             System.out.println(" = = = = = = LOGIN'S SCREEN = = =  = = = ");
+
             System.out.println("Insert your mail:");
             String inputMail = input.next();
 
