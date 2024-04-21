@@ -8,6 +8,7 @@ public class DAOUser {
     private ConnectDataBase connectDataBase;
     private Connection connection;
     private String sqlCommand;
+    private static int totalRows = 0;
 
     public DAOUser(){
         this.connectDataBase = new ConnectDataBase();
@@ -49,7 +50,6 @@ public class DAOUser {
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
             ResultSet rows = operationsSQLExecutor.executeQuery();
-            int totalRows = 0;
             while(rows.next()){
                 totalRows++;
                 System.out.println("Username:"+rows.getString(1) + " | Mail:"+rows.getString(2) + " | password:"+rows.getString(3));
@@ -60,20 +60,24 @@ public class DAOUser {
         }
     }
 
-    public void specifiedRowSearch(String username){
-        sqlCommand = "SELECT * FROM usuarios WHERE username=?";
+    public void specifiedRowSearch(User user){
+        sqlCommand = "SELECT * FROM usuarios WHERE mail=? and password=?";
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
-            operationsSQLExecutor.setString(1, username);
+            operationsSQLExecutor.setString(1, user.getMail());
+            operationsSQLExecutor.setString(2, user.getPassword());
             ResultSet rows = operationsSQLExecutor.executeQuery();
-            int results = 0;
             while(rows.next()){
-                results++;
+                totalRows++;
                 System.out.println("Username:"+rows.getString(1) + " | Mail:"+rows.getString(2) + " | password:"+rows.getString(3));
             }
-            System.out.println("Results:"+results);
+            System.out.println("Results:"+totalRows);
         }catch (SQLException e){
             System.out.println("an exception has occurred:"+e.getMessage());
         }
+    }
+
+    public static int getTotalRows() {
+        return totalRows;
     }
 }
