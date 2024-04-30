@@ -8,12 +8,12 @@ public class EmailService {
     private int codeVerification;
     private final String smtpServer = "smtp.gmail.com";
     private final int smtpPort = 587;
+    private final String SUPPORT_MAIL = "meddisme@gmail.com";
 
     public EmailService(){
         this.codeVerification = new Random().nextInt(999999) ;
     }
     public void sendVerificationCode(String mailDestiny){
-        final String mailRemetent = "meddisme@gmail.com"; //Support mail
         final String passwordFrom = "hxbkizlaelojzzxs";
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);
@@ -24,7 +24,7 @@ public class EmailService {
         Authenticator auth = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(mailRemetent, passwordFrom);
+                return new PasswordAuthentication(SUPPORT_MAIL, passwordFrom);
             }
         };
 
@@ -32,7 +32,7 @@ public class EmailService {
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(mailRemetent));
+            message.setFrom(new InternetAddress(SUPPORT_MAIL));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailDestiny));
             message.setSubject("Your verification Code");
             message.setText("Verification Code is :"+this.codeVerification +
