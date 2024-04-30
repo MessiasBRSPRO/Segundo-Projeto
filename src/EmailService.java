@@ -7,6 +7,7 @@ import java.util.Random;
 public class EmailService {
     private int codeVerification;
     private final String smtpServer = "smtp.gmail.com";
+    private final int smtpPort = 587;
 
     public EmailService(){
         this.codeVerification = new Random().nextInt(999999) ;
@@ -18,7 +19,7 @@ public class EmailService {
         props.put("mail.smtp.auth", true);
         props.put("mail.smtp.starttls.enable", true);
         props.put("mail.smtp.host", smtpServer);
-        props.put("mail.smtp.port", 587);
+        props.put("mail.smtp.port", smtpPort);
 
         Authenticator auth = new Authenticator() {
             @Override
