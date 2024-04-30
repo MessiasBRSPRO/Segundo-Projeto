@@ -2,37 +2,42 @@ import javax.security.auth.login.LoginException;
 import java.util.Scanner;
 
 public class LoginClass {
-    /*This class is responsible to give access to existent users to application*/
-    private static DAOUser daoUser = new DAOUser();
-    private boolean logged = false;
-    private int tentativesLogin; //<- nothing used for now
-    public void loginMethod(){
-        Scanner input = new Scanner(System.in);
-        while(!(logged)){
-            System.out.println(" = = = = = = LOGIN'S SCREEN = = =  = = = ");
+    private DAOUser daoUser;
+    private boolean isLogged;
+    private EmailService emailService;
 
-            System.out.println("Insert your mail:");
-            String inputMail = input.next();
+    public LoginClass(){
+        this.daoUser = new DAOUser();
+        this.isLogged = false;
+        this.emailService = new EmailService();
+    }
 
-            System.out.println("Insert your password:");
-            String inputPassword = input.next();
+    public void startLogin(){
+        Scanner inputMain = new Scanner(System.in);
 
-            User user = new User("", inputMail, inputPassword);
+        System.out.println("= = = = = = LOGIN = = = = = =");
+
+        while(!isLogged){
+
+            System.out.println("Email:");
+            String inputMail = inputMain.next();
+
+            System.out.println("Password:");
+            String inputPassword = inputMain.next();
+
+            final User user = new User("", inputMail, inputPassword);
+
+            //Sarching the user in DataBase postgreSQL
             daoUser.specifiedRowSearch(user);
-            boolean results = DAOUser.getTotalRows() == 1;
+            boolean resultsRow = DAOUser.getTotalRows() == 1;
 
-            try{
-                if(!(results)){
-                    throw new LoginException("Mail or password is invalid or don't exists, try again");
-                }else {
-                    logged = true;
-                    System.out.println("Access conceded");
-                }
-            }catch (LoginException e ){
-                System.out.println("an exception has occurred:"+e.getMessage());
+            if(!(resultsRow)){
+                System.out.println("User email or password invalid or don't exists");
+            }else {
+                System.out.println("Access allowed");
+                isLogged = true;
             }
         }
-
 
     }
 }
