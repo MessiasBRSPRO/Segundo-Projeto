@@ -60,7 +60,7 @@ public class DAOUser {
         }
     }
 
-    public void specifiedRowSearch(User user){
+    public String specifiedRowSearch(User user){
         sqlCommand = "SELECT * FROM usuarios WHERE mail=? and password=?";
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
@@ -69,12 +69,12 @@ public class DAOUser {
             ResultSet rows = operationsSQLExecutor.executeQuery();
             while(rows.next()){
                 totalRows++;
-                System.out.println("Username:"+rows.getString(1) + " | Mail:"+rows.getString(2) + " | password:"+rows.getString(3));
+                return "Username:"+rows.getString(1) + " | Mail:"+rows.getString(2) + " | password:"+rows.getString(3);
             }
-            System.out.println("Results:"+totalRows);
         }catch (SQLException e){
             System.out.println("an exception has occurred:"+e.getMessage());
         }
+        return String.valueOf(totalRows);
     }
 
     public static int getTotalRows() {
