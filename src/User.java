@@ -47,10 +47,6 @@ public class User {
         }
     }
 
-    public void forgotMyPassword(){
-        //Nothing here for now...
-    }
-
     public static List<User> getUserList() {
         return Collections.unmodifiableList(userList);
     }
@@ -66,5 +62,13 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setMail(String mail) {
+        this.mail = MailValidator.mailValidatorMethod(mail);
+    }
+
+    public void setPassword(String password) {
+        this.password = PasswordValidator.passwordValidator(password);
     }
 }
