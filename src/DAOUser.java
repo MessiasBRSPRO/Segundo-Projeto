@@ -77,6 +77,19 @@ public class DAOUser {
         return String.valueOf(totalRows);
     }
 
+    public void updateMail(String  mailUser, User user){
+        sqlCommand = "UPDATE usuarios SET mail=? WHERE mail=?";
+        try{
+            PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
+            operationsSQLExecutor.setString(1, mailUser);
+            operationsSQLExecutor.setString(2, user.getMail());
+            operationsSQLExecutor.executeUpdate();
+            System.out.println("Your mail has updated!");
+        }catch (SQLException e){
+            System.out.println("an Exception has occurred:" +e.getMessage());
+        }
+    }
+
     public static int getTotalRows() {
         return totalRows;
     }
