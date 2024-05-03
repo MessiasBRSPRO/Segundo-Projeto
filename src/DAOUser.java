@@ -77,16 +77,29 @@ public class DAOUser {
         return String.valueOf(totalRows);
     }
 
-    public void updateMail(String  mailUser, User user){
+    public void updateMail(String newMail, User user){
         sqlCommand = "UPDATE usuarios SET mail=? WHERE mail=?";
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
-            operationsSQLExecutor.setString(1, mailUser);
+            operationsSQLExecutor.setString(1, newMail);
             operationsSQLExecutor.setString(2, user.getMail());
             operationsSQLExecutor.executeUpdate();
             System.out.println("Your mail has updated!");
         }catch (SQLException e){
             System.out.println("an Exception has occurred:" +e.getMessage());
+        }
+    }
+
+    public void updatePassword(String newPassword, User user){
+        sqlCommand = "UPDATE usuarios SET password=? WHERE mail=?";
+        try{
+            PreparedStatement operationsSQLExceutor = connection.prepareStatement(sqlCommand);
+            operationsSQLExceutor.setString(1, newPassword);
+            operationsSQLExceutor.setString(2, user.getMail());
+            operationsSQLExceutor.executeUpdate();
+            System.out.println("your password has been updated");
+        }catch (SQLException e){
+            System.out.println("an exception has occurred:"+e.getMessage());
         }
     }
 
