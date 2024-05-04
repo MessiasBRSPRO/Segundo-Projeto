@@ -1,5 +1,7 @@
+import br.com.SegundoProjeto.Services.LoginClass;
+
 public class Main {
     public static void main(String[] args){
-        //this class is for initialize codes!!
+        //This class is used to Starts execution of functionalities of this project
     }
 }
