@@ -14,6 +14,8 @@ public class DAOUser {
         this.connectDataBase = new ConnectDataBase();
         this.connection = connectDataBase.startConnection("postgresql", 5432, "usuarios");
     }
+
+    //This method insert an user in dataBase
     public void insertIntoDataBase(User user){
         sqlCommand = "INSERT INTO usuarios (username, mail, password) VALUES(?, ?, ?)";
         try{
@@ -33,6 +35,7 @@ public class DAOUser {
         }
     }
 
+    //this method delete an row from the mail of an user
     public void deleteFromDataBase(User user){
         sqlCommand = "DELETE FROM usuarios WHERE mail=?";
         try{
@@ -45,6 +48,7 @@ public class DAOUser {
         }
     }
 
+    //This method displays all rows in Database usuarios
     public void seeAllRows(){
         sqlCommand = "SELECT * FROM usuarios";
         try{
@@ -60,6 +64,7 @@ public class DAOUser {
         }
     }
 
+    //this method is for if is necessary an specified user search
     public String specifiedRowSearch(User user){
         sqlCommand = "SELECT * FROM usuarios WHERE mail=? and password=?";
         try{
@@ -77,7 +82,8 @@ public class DAOUser {
         return String.valueOf(totalRows);
     }
 
-    public void updateMail(String newMail, User user){
+    /*for a future use....
+     public void updateMail(String newMail, User user){
         sqlCommand = "UPDATE usuarios SET mail=? WHERE mail=?";
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);
@@ -89,6 +95,7 @@ public class DAOUser {
             System.out.println("an Exception has occurred:" +e.getMessage());
         }
     }
+    * */
 
     public void updatePassword(String newPassword, User user){
         sqlCommand = "UPDATE usuarios SET password=? WHERE mail=?";
