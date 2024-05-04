@@ -1,4 +1,9 @@
-import javax.security.auth.login.LoginException;
+package br.com.SegundoProjeto.Services;
+
+import br.com.SegundoProjeto.DataBaseClass.DAOUser;
+import br.com.SegundoProjeto.Exceptions.InvalidOptionException;
+import br.com.SegundoProjeto.Exceptions.VerificationCodeException;
+
 import java.util.Scanner;
 
 public class LoginClass {

@@ -1,3 +1,7 @@
+package br.com.SegundoProjeto.Validators;
+
+import br.com.SegundoProjeto.Exceptions.MailException;
+
 public class MailValidator {
     public static String mailValidatorMethod(String mail){
         try{

@@ -1,3 +1,7 @@
+package br.com.SegundoProjeto.DataBaseClass;
+
+import br.com.SegundoProjeto.Services.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,7 +87,7 @@ public class DAOUser {
     }
 
     /*for a future use....
-     public void updateMail(String newMail, User user){
+     public void updateMail(String newMail, br.com.SegundoProjeto.Services.User user){
         sqlCommand = "UPDATE usuarios SET mail=? WHERE mail=?";
         try{
             PreparedStatement operationsSQLExecutor = connection.prepareStatement(sqlCommand);

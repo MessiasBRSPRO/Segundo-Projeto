@@ -1,3 +1,8 @@
+package br.com.SegundoProjeto.Services;
+
+import br.com.SegundoProjeto.Validators.MailValidator;
+import br.com.SegundoProjeto.Validators.PasswordValidator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
