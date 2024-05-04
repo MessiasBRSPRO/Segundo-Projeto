@@ -28,3 +28,10 @@ with the dataBase.The JDBC API intermediates the communication of Project and Re
 (Attributes = Connection connection, String urlConnection, String userDataBase, String passwordDataBase, Methods=StartConnection)</p>
 <p>*DAOUser class = Class responsible to realize the crud of App, she contains methods than can manipulate the usuarios's data Base, have methods
 like a insert a user in db, delete a user, seeAllrows...</p>
+
+<h2>Service's package</h2>
+<p>The package contains three class than is responsible of Realize logins, User's Register and an Class than is responsible of
+send mails utilizing JavaMail API.</p>
+<p>*EmailService class = Class responsible for Send emails in application</p>
+<p>*Login Class = Class responsible for realize logins and User's Authentication</p>
+<p>*User class = Class responsible for User's Register</p>
